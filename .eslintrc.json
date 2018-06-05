@@ -34,7 +34,8 @@
             "off",
             "never"
         ],
-        "no-console": "off"
+        "no-console": "off",
+        "react/display-name":["off"]
     },
     "globals": {
      "__dirname":false
