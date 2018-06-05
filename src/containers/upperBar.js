@@ -21,6 +21,11 @@ color:#00408B;
 font-family: Roboto-Medium;
 font-size: 24px;
 text-align:center;
+
+&:hover{
+    color:#FFFFFF;
+    cursor:pointer;
+}
 `;
 
 export default class UpperBar extends Component {
