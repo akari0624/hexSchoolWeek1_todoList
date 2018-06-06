@@ -24,8 +24,8 @@ display:inline-block;
 
 export default (props) => (
   <OutterDiv>
-    <Checkbox type="checkbox"/>
-    <Input type="text" placeholder="Type Something Here…"/>
+    <Checkbox type="checkbox" />
+    <Input type="text" placeholder="Type Something Here…" />
     <Div>星</Div>
     <Div>筆</Div>
   </OutterDiv>

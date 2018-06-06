@@ -6,13 +6,13 @@ import TodoListArea from './components/TodoListArea'
 export default (props) => {
 
 
-    return (
-      <div>
-        <UpperBar />
-        <EdittingTaskCard />
-        <TodoListArea />
-      </div>
-    )
+  return (
+    <div>
+      <UpperBar />
+      <EdittingTaskCard />
+      <TodoListArea />
+    </div>
+  )
 
    
 

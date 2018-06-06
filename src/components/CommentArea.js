@@ -34,7 +34,7 @@ export default (props) => (
   <OutterDiv> 
     <CommentPic>備註圖</CommentPic>
     <CommentDesc>Comment</CommentDesc>
-    <CommentTextArea placeholder="Type your memo here…"/> 
+    <CommentTextArea placeholder="Type your memo here…" /> 
   </OutterDiv>
     
 

@@ -14,10 +14,26 @@ module.exports = {
                 exclude: /node_modules/
             }, {
                 use: [
+                    {
+                        loader: 'style-loader'
+                    }, {
+                        loader: 'css-loader'
+                    }, {
+                        loader: 'less-loader',
+                        options: {
+                            javascriptEnabled: true
+                        }
+                    }
+                ],
+                test: /\.less$/
+
+            }, {
+                use: [
                     'style-loader', 'css-loader'
                 ],
                 test: /\.css$/
             }
+
         ]
     },
 

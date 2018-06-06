@@ -35,7 +35,7 @@ export default (props) => (
 
   <OuttestWrapper highlighted={props.highlighted}>
     <ToDoItem>   
-      <Checkbox type="checkbox"/>
+      <Checkbox type="checkbox" />
       <TodoTextDisplayDiv>your todo</TodoTextDisplayDiv>
       <Div>星</Div>
       <Div>筆</Div>
