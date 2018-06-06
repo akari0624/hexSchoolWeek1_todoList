@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-
+import TodoListReducer from './TodoListReducer'
 
 const rootReducer = combineReducers({
 
-    state:(state= {}) => state
+  todoList:TodoListReducer
 })
 
 
