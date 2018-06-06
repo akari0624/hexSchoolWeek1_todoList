@@ -12,7 +12,7 @@ import {GET_CURR_TODO_DATA} from '../action_types'
 
 
 
-export default (state = [], action) => {
+export default (state = [{},{},{},{},{},], action) => {
 
   switch(action.type){
 
