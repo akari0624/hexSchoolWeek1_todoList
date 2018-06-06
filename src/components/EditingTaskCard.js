@@ -1,12 +1,15 @@
 import React from 'react'
 import Styled from 'styled-components'
-import InputTextBar from './InputTextBar'
-import CalendarInput from './CalendarInput'
+import EditToDoBar from './EditToDoBar'
+import CalendarArea from './CalendarArea'
+import AttachFileArea from './AttachFileArea'
+import CommentArea from './CommentArea'
+import ButtonArea from './ButtonArea'
 
 const CardWrapper = Styled.section`
 display:grid;
 grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;
-grid-template-rows:50px 50px 50px 50px 50px 50px 50px 50px;
+grid-template-rows:50px 20px 20px 20px 20px 20px 40px 50px;
 grid-row-gap:20px;
 background-color:#F2F2F2;
 margin:30px 15% 30px 15%;
@@ -21,8 +24,11 @@ export default (props) => (
   
   <CardWrapper> 
   
-    <InputTextBar />
-    <CalendarInput />
+    <EditToDoBar />
+    <CalendarArea />
+    <AttachFileArea />
+    <CommentArea />
+    <ButtonArea />
   </CardWrapper>
 
 )
