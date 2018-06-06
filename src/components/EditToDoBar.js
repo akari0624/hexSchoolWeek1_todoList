@@ -4,7 +4,7 @@ import Styled from 'styled-components'
 
 
 const OutterDiv = Styled.div`
-grid-column:1/8;
+grid-column:1/7;
 grid-row:1/2;
 `
 
@@ -25,7 +25,7 @@ display:inline-block;
 export default (props) => (
   <OutterDiv>
     <Checkbox type="checkbox"/>
-    <Input type="text" />
+    <Input type="text" placeholder="Type Something Here…"/>
     <Div>星</Div>
     <Div>筆</Div>
   </OutterDiv>

@@ -12,7 +12,7 @@ grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;
 grid-template-rows:50px 20px 20px 20px 20px 20px 40px 50px;
 grid-row-gap:20px;
 background-color:#F2F2F2;
-margin:30px 15% 30px 15%;
+margin:30px 15% 0px 15%;
 width:70%;
 height:400px;
 border:1px solid red;

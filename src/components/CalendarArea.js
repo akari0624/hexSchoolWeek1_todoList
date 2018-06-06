@@ -2,7 +2,7 @@ import React from 'react'
 import Styled from 'styled-components'
 
 const OutterDiv = Styled.div`
-grid-column:1/8;
+grid-column:1/7;
 grid-row:2/4;
 
 display:grid;

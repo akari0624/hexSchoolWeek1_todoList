@@ -3,7 +3,7 @@ import Styled from 'styled-components'
 
 
 const OutterDiv = Styled.div`
-grid-column:1/8;
+grid-column:1/7;
 grid-row:8/9;
 
 display:grid;
@@ -17,6 +17,7 @@ background-color:#FFFFFF;
 color:#D0021B;
 line-height:50px;
 text-align:center;
+cursor:pointer;
 `
 
 const ConfirmBtn = Styled.a`
@@ -26,6 +27,7 @@ background-color:#4A90E2;
 color:#FFFFFF;
 line-height:50px;
 text-align:center;
+cursor:pointer;
 `
 
 

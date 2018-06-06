@@ -2,7 +2,7 @@ import React from 'react'
 import Styled from 'styled-components'
 
 const OutterDiv = Styled.div`
-grid-column:1/8;
+grid-column:1/7;
 grid-row:4/6;
 
 display:grid;
@@ -25,6 +25,7 @@ const AttachFilePlusLabel = Styled.label`
 grid-column:1/2;
 grid-row:2/3
 background-color:red;
+cursor:pointer;
 `
 
 const AttachFileHiddenInput = Styled.input`
