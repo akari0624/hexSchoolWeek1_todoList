@@ -1,6 +1,5 @@
 import React from 'react'
-
-
+import PropTypes from 'prop-types'
 import Styled from 'styled-components'
 
 
@@ -31,12 +30,12 @@ margin-left:50px;
 `
 
 
-export default (props) => (
+const Todo_Items = (props) => (
 
   <OuttestWrapper highlighted={props.highlighted}>
     <ToDoItem>   
       <Checkbox type="checkbox" />
-      <TodoTextDisplayDiv>your todo</TodoTextDisplayDiv>
+      <TodoTextDisplayDiv>your todo {props.data.num}</TodoTextDisplayDiv>
       <Div>星</Div>
       <Div>筆</Div>
     </ToDoItem> 
@@ -47,3 +46,12 @@ export default (props) => (
   </OuttestWrapper>
 
 )
+
+Todo_Items.propTypes = {
+  highlighted: PropTypes.bool,
+  data: PropTypes.object,
+
+}
+
+
+export default Todo_Items

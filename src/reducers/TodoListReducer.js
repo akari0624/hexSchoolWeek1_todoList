@@ -1,4 +1,4 @@
-import {GET_CURR_TODO_DATA} from '../action_types'
+import {GET_CURR_TODO_DATA, REORDER_TODOS} from '../action_types'
 
 
 // {
@@ -12,16 +12,19 @@ import {GET_CURR_TODO_DATA} from '../action_types'
 
 
 
-export default (state = [{},{},{},{},{},], action) => {
+export default (state = [{num:1},{num:2},{num:3},{num:4},{num:5},], action) => {
 
   switch(action.type){
 
   case GET_CURR_TODO_DATA:
 
-    return state;
+    return state
 
+  case REORDER_TODOS:
+    state = action.payload  
 
+    return state
   }
 
-  return state;
+  return state
 }

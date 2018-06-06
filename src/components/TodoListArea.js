@@ -2,8 +2,11 @@ import React, {Component} from 'react'
 import Styled from 'styled-components'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import { DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
+import {bindActionCreators} from 'redux'
 import TodoItem from './Todo_Item'
+import {sendReorderTodosToReducer} from '../actions'
+
 
 const OutterWrapper = Styled.section`
 margin:30px 15% 0px 15%;
@@ -14,8 +17,16 @@ width:70%;
 
 const getListStyle = isDraggingOver => ({
   backgroundColor: isDraggingOver ? 'lightblue' : '#FFFFFF',
-});
+})
 
+
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+}
 
 
 class TodoListArea extends Component {
@@ -28,10 +39,19 @@ class TodoListArea extends Component {
 
     onDragAndDropEnd = (result) => {
 
-        if (!result.destination) {
-            return;
-        }
-        console.log('dnd end')
+      if (!result.destination) {
+        return;
+      }
+
+      const reorderTodoItems = reorder(
+        this.props.todoList,
+        result.source.index,
+        result.destination.index
+      )
+
+
+      this.props.sendReorderTodosToReducer(reorderTodoItems)
+
     };
 
     
@@ -45,8 +65,8 @@ renderDragableTodoItem = (todoData, i) => (
       {...provided.draggableProps}
       {...provided.dragHandleProps}
     >
-      <TodoItem key={i} />
-   </div>
+      <TodoItem key={i} data={todoData} />
+    </div>
     {provided.placeholder}
   </div>       
 );
@@ -63,8 +83,10 @@ renderDragableTodoItem = (todoData, i) => (
  
 
     renderDnDableTodoListArea = (todoList) => (provided, snapshot) => (
-      <OutterWrapper innerRef={provided.innerRef}
-        style={getListStyle(snapshot.isDraggingOver)}>
+      <OutterWrapper 
+        innerRef={provided.innerRef}
+        style={getListStyle(snapshot.isDraggingOver)}
+      >
         {this.renderCurrTodoList(todoList)}
       </OutterWrapper>
     );
@@ -84,7 +106,8 @@ renderDragableTodoItem = (todoData, i) => (
 }
 
 TodoListArea.propTypes = {
-  todoList: PropTypes.array
+  todoList: PropTypes.array,
+  sendReorderTodosToReducer: PropTypes.func,
 }
 
 function mapStateToProps(state) {
@@ -93,4 +116,11 @@ function mapStateToProps(state) {
 
 }
 
-export default connect(mapStateToProps, null)(TodoListArea)
+function mapDispatchToProps(dispatch){
+
+  return bindActionCreators({
+    sendReorderTodosToReducer
+  },dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoListArea)
