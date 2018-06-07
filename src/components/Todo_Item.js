@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Styled from 'styled-components'
-
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { highlightOneTodo } from '../actions'
 
 const iconFontSize = '20px'
 
@@ -43,6 +45,7 @@ grid-row: 1/2;
 
 const Div = Styled.div`
 font-size:${iconFontSize};
+cursor:pointer;
 `
 
 const  ToDoItemMetaCondition = Styled.div`
@@ -53,13 +56,34 @@ padding-bottom:16px;
 `
 
 
-const Todo_Items = (props) => (
 
+
+const Todo_Items = (props) => {
+
+  const handleHighLightedChange = () => {
+
+    
+    props.highlightOneTodo(props.index)
+
+  }
+
+   
+  const renderIsHighlightStar = () => {
+
+    if(props.highlighted){
+      return (<i className="fas fa-star"></i>)
+    }
+
+    return (<i className="far fa-star"></i>)
+  }
+
+
+return(
   <OuttestWrapper highlighted={props.highlighted}>
     <ToDoItem>   
       <Checkbox type="checkbox" />
-      <TodoTextDisplayDiv>your todo {props.data.num}</TodoTextDisplayDiv>
-      <Div><i className="far fa-star"></i></Div>
+      <TodoTextDisplayDiv>your todo {props.num}</TodoTextDisplayDiv>
+      <Div onClick={handleHighLightedChange}>{renderIsHighlightStar()}</Div>
       <Div><i className="far fa-edit"></i></Div> 
     </ToDoItem> 
 
@@ -67,14 +91,24 @@ const Todo_Items = (props) => (
     some condition
     </ToDoItemMetaCondition>    
   </OuttestWrapper>
-
 )
+}
 
 Todo_Items.propTypes = {
   highlighted: PropTypes.bool,
-  data: PropTypes.object,
+  num: PropTypes.number,
+  highlightOneTodo: PropTypes.func,
+  index: PropTypes.number,
 
 }
 
 
-export default Todo_Items
+function mapDispatchToProps(dispatch){
+
+  return bindActionCreators({
+    highlightOneTodo
+  },dispatch)
+
+}
+
+export default connect(null, mapDispatchToProps)(Todo_Items)

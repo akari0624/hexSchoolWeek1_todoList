@@ -1,3 +1,5 @@
 export const GET_CURR_TODO_DATA = 'GET_CURR_TODO_DATA'
 
 export const REORDER_TODOS = 'REORDER_TODOS'
+
+export const HIGHLIGHT_TODO = 'HIGHLIGHT_TODO'
