@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
 import {bindActionCreators} from 'redux'
 import TodoItem from './Todo_Item'
-import {sendReorderTodosToReducer} from '../actions'
+import { sendReorderTodosToReducer } from '../actions'
 import { reorder } from '../utils'
 
 
@@ -103,6 +103,7 @@ renderDragableTodoItem = (todoData, i) => (
 TodoListArea.propTypes = {
   todoList: PropTypes.array,
   sendReorderTodosToReducer: PropTypes.func,
+
 }
 
 function mapStateToProps(state) {
@@ -114,7 +115,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch){
 
   return bindActionCreators({
-    sendReorderTodosToReducer
+    sendReorderTodosToReducer,
   },dispatch)
 }
 

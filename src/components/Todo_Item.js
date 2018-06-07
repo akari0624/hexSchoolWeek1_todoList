@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Styled from 'styled-components'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { highlightOneTodo } from '../actions'
+import { highlightOneTodo, markOneTodoComplete } from '../actions'
 
 const iconFontSize = '20px'
 
@@ -31,10 +31,11 @@ display: grid;
  margin-bottom:15px;   
 `
 
-const Checkbox = Styled.input`
+const Checkbox = Styled.div`
 grid-column: 1/2;
 grid-row: 1/2;
 margin-left:30px;
+cursor:pointer;
 `
 
 const TodoTextDisplayDiv = Styled.div`
@@ -55,16 +56,27 @@ margin-left:50px;
 padding-bottom:16px;
 `
 
+const LineThroughSpan = Styled.span`
+text-decoration:line-through;
+`
+
 
 
 
 const Todo_Items = (props) => {
+
+
 
   const handleHighLightedChange = () => {
 
     
     props.highlightOneTodo(props.index)
 
+  }
+
+  const markOneTodoComplete = () => {
+
+    props.markOneTodoComplete(props.index)
   }
 
    
@@ -77,12 +89,35 @@ const Todo_Items = (props) => {
     return (<i className="far fa-star"></i>)
   }
 
+  const renderIsTodoCompleteCheckbox = () => {
+
+
+ if(props.isComplete){
+  return (<i className="fas fa-check-circle"></i>)
+}
+
+return (<i className="far fa-circle"></i>)
+
+  }
+
+
+  const renderIsComplete = () => {
+
+   if(props.isComplete){
+
+    return <TodoTextDisplayDiv><LineThroughSpan>your todo {props.num}</LineThroughSpan></TodoTextDisplayDiv>
+
+   }
+
+   return <TodoTextDisplayDiv>your todo {props.num}</TodoTextDisplayDiv>
+  }
+
 
 return(
   <OuttestWrapper highlighted={props.highlighted}>
     <ToDoItem>   
-      <Checkbox type="checkbox" />
-      <TodoTextDisplayDiv>your todo {props.num}</TodoTextDisplayDiv>
+      <Checkbox onClick={markOneTodoComplete} >{renderIsTodoCompleteCheckbox()}</Checkbox>
+      {renderIsComplete()}
       <Div onClick={handleHighLightedChange}>{renderIsHighlightStar()}</Div>
       <Div><i className="far fa-edit"></i></Div> 
     </ToDoItem> 
@@ -99,6 +134,7 @@ Todo_Items.propTypes = {
   num: PropTypes.number,
   highlightOneTodo: PropTypes.func,
   index: PropTypes.number,
+  markOneTodoComplete: PropTypes.func,
 
 }
 
@@ -106,7 +142,7 @@ Todo_Items.propTypes = {
 function mapDispatchToProps(dispatch){
 
   return bindActionCreators({
-    highlightOneTodo
+    highlightOneTodo, markOneTodoComplete,
   },dispatch)
 
 }
