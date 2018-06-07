@@ -50,7 +50,7 @@ transition:.6s;
  const ButtonArea = (props) => (
 
   <OutterDiv>
-    <CancelBtn>X Cancel</CancelBtn>
+    <CancelBtn onClick={props.toggleAppModeCB}>X Cancel</CancelBtn>
     <ConfirmBtn>＋ Add Task</ConfirmBtn>
   </OutterDiv>
 

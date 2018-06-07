@@ -30,7 +30,7 @@ const EditingTodoCard = (props) => (
     <CalendarArea />
     <AttachFileArea />
     <CommentArea />
-    <ButtonArea />
+    <ButtonArea toggleAppModeCB={props.toggleAppInNewAddTodoMode} />
   </CardWrapper>
 
 )
