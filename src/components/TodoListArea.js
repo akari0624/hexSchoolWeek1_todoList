@@ -6,6 +6,7 @@ import { DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
 import {bindActionCreators} from 'redux'
 import TodoItem from './Todo_Item'
 import {sendReorderTodosToReducer} from '../actions'
+import { reorder } from '../utils'
 
 
 const OutterWrapper = Styled.section`
@@ -20,13 +21,7 @@ const getListStyle = isDraggingOver => ({
 })
 
 
-const reorder = (list, startIndex, endIndex) => {
-  const result = Array.from(list);
-  const [removed] = result.splice(startIndex, 1);
-  result.splice(endIndex, 0, removed);
 
-  return result;
-}
 
 
 class TodoListArea extends Component {
@@ -65,7 +60,7 @@ renderDragableTodoItem = (todoData, i) => (
       {...provided.draggableProps}
       {...provided.dragHandleProps}
     >
-      <TodoItem key={i} data={todoData} />
+      <TodoItem key={i} {...todoData} index={i} />
     </div>
     {provided.placeholder}
   </div>       
