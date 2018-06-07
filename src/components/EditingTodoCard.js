@@ -9,18 +9,20 @@ import ButtonArea from './ButtonArea'
 const CardWrapper = Styled.section`
 display:grid;
 grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;
-grid-template-rows:50px 20px 20px 20px 20px 20px 40px 50px;
-grid-row-gap:20px;
+grid-template-rows:50px 20px 20px 20px 20px 20px 80px 50px;
+grid-row-gap:30px;
+align-items:center;
 background-color:#F2F2F2;
 margin:30px 15% 0px 15%;
 width:70%;
-height:400px;
-border:1px solid red;
+box-shadow: 0 4px 4px 0 #C8C8C8;
+border-radius: 5px;
+
 `
 
 
 
-export default (props) => (
+const EditingTodoCard = (props) => (
   
   <CardWrapper> 
   
@@ -32,3 +34,5 @@ export default (props) => (
   </CardWrapper>
 
 )
+
+export default EditingTodoCard

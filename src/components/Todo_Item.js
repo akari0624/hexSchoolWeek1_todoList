@@ -3,30 +3,53 @@ import PropTypes from 'prop-types'
 import Styled from 'styled-components'
 
 
+const iconFontSize = '20px'
+
 const OuttestWrapper = Styled.div`
 background-color:${props => props.highlighted ? '#FFF2DC' : '#F2F2F2'};
-height:102px;
+
+
 margin-bottom:8px;
 `
 
-const ToDoItem = Styled.div``
+const ToDoItem = Styled.div`
+font-size:24px;
+display: grid;
+    grid-template-columns: 10% 60% 15% 15%;
+    grid-column-gap: 10px;
+
+    &:nth-child(3){
+      grid-column:3/4;
+    }
+    
+    &:nth-child(4){
+      grid-column:4/5;
+    }
+
+ margin-bottom:15px;   
+`
 
 const Checkbox = Styled.input`
+grid-column: 1/2;
+grid-row: 1/2;
 margin-left:30px;
 `
 
 const TodoTextDisplayDiv = Styled.div`
-margin-left:20px;
-display:inline-block;
+grid-column: 2/3;
+grid-row: 1/2;
+
 `
 
 const Div = Styled.div`
-margin-left:80px;
-display:inline-block;
+font-size:${iconFontSize};
 `
 
 const  ToDoItemMetaCondition = Styled.div`
+display: grid;
+grid-column: 1/5;
 margin-left:50px;
+padding-bottom:16px;
 `
 
 
@@ -36,8 +59,8 @@ const Todo_Items = (props) => (
     <ToDoItem>   
       <Checkbox type="checkbox" />
       <TodoTextDisplayDiv>your todo {props.data.num}</TodoTextDisplayDiv>
-      <Div>星</Div>
-      <Div>筆</Div>
+      <Div><i className="far fa-star"></i></Div>
+      <Div><i className="far fa-edit"></i></Div> 
     </ToDoItem> 
 
     <ToDoItemMetaCondition>

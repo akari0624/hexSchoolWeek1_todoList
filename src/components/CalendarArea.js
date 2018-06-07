@@ -3,51 +3,61 @@ import Styled from 'styled-components'
 import { DatePicker, TimePicker } from 'antd'
 import 'antd/lib/date-picker/style'
 import 'antd/lib/time-picker/style'
+import locale from 'antd/lib/date-picker/locale/zh_TW'
+
+const iconFontSize = '20px'
 
 const OutterDiv = Styled.div `
 grid-column:1/7;
 grid-row:2/4;
 
 display:grid;
-grid-template-columns:1fr 1fr;
+grid-template-columns:50% 50%;
 grid-template-rows:50% 50%;
 grid-row-gap:5px;
 `
-const CalendarPic = Styled.div `
-grid-column:1/2;
+const CalendarPicAndDesc = Styled.div `
+grid-column:1/3;
 grid-row:1/2;
+
+font-size:${iconFontSize};
+padding-left:30px;
 `
 
-const CalendarDesc = Styled.div `
-grid-column:2/3;
-grid-row:1/2;
+const TextSpan = Styled.span`
+margin-left:20px;
 `
 
-const DeadlineDate = Styled.input `
-grid-column:1/2;
-grid-row:2/3;
-`
 
-const DedlineTime = Styled.input `
-grid-column:2/3;
-grid-row:2/3;
-`
+
+const DatePickerStyle = {
+  gridColumn: '1/2',
+  gridRow: '2/3',
+  marginLeft:'30px',
+
+}
+
+const TimePickerStyle = {
+  gridColumn: '2/3',
+  gridRow: '2/3',
+  marginLeft:'10px',
+
+}
 
 const onDateInputChange = (date) => console.log(date.toString())
 
 const onTimeInputChange = (time) => console.log(time.toString())
 
-// <DeadlineDate placeholder="yyyy/mm/dd" />
-// <DedlineTime placeholder="hh:mm" />
 
-export default(props) => (
+const DateAndTimePicker = (props) => (
 
 
   <OutterDiv>
-    <CalendarPic>日曆圖</CalendarPic>
-    <CalendarDesc>dead line</CalendarDesc>
-    <DatePicker onChange={onDateInputChange} /> 
-    <TimePicker onChange={onTimeInputChange}/>
+    <CalendarPicAndDesc><i className="far fa-calendar-alt"></i>  <TextSpan>dead line</TextSpan></CalendarPicAndDesc>
+    <DatePicker onChange={onDateInputChange} locale={locale} style={DatePickerStyle} /> 
+    <TimePicker onChange={onTimeInputChange} style={TimePickerStyle} />
   </OutterDiv>
 
 )
+
+export default DateAndTimePicker

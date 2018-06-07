@@ -6,9 +6,11 @@ const OutterDiv = Styled.div`
 grid-column:1/7;
 grid-row:8/9;
 
+
 display:grid;
 grid-template-columns:1fr 1fr;
 grid-template-rows:100%;
+font-size:24px;
 `
 const CancelBtn = Styled.a`
 grid-column:1/2;
@@ -18,6 +20,11 @@ color:#D0021B;
 line-height:50px;
 text-align:center;
 cursor:pointer;
+transition:.6s;
+  &:hover{
+    background-color:#D0021B;
+    color:#FFFFFF;
+}
 `
 
 const ConfirmBtn = Styled.a`
@@ -28,12 +35,19 @@ color:#FFFFFF;
 line-height:50px;
 text-align:center;
 cursor:pointer;
+transition:.6s;
+
+  &:hover{
+    background-color:#FFFFFF;
+    color:#4A90E2;
+    border:1px solid #4A90E2;
+}
 `
 
 
 
 
-export default (props) => (
+ const ButtonArea = (props) => (
 
   <OutterDiv>
     <CancelBtn>X Cancel</CancelBtn>
@@ -41,3 +55,6 @@ export default (props) => (
   </OutterDiv>
 
 )
+
+
+export default ButtonArea

@@ -1,6 +1,6 @@
 import React from 'react'
 import UpperBar from './containers/upperBar'
-import EdittingTaskCard from './components/EditingTaskCard'
+import EdittingTaskCard from './components/EditingTodoCard'
 import TodoListArea from './components/TodoListArea'
 
 export default (props) => {

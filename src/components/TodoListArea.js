@@ -16,7 +16,7 @@ width:70%;
 
 
 const getListStyle = isDraggingOver => ({
-  backgroundColor: isDraggingOver ? 'lightblue' : '#FFFFFF',
+  backgroundColor: isDraggingOver ? '#4A90E2' : '#FFFFFF',
 })
 
 

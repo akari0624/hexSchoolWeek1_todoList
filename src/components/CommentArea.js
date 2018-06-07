@@ -1,41 +1,50 @@
 import React from 'react'
 import Styled from 'styled-components'
 
+
+
+const iconFontSize = '20px'
+
 const OutterDiv = Styled.div`
 grid-column:1/7;
 grid-row:6/8;
 
 display:grid;
-grid-template-columns:1fr 1fr;
-grid-template-rows:50% 50%;
-grid-row-gap:5px;
+grid-template-columns:20% 80%;
+grid-template-rows:20px 110px;
+grid-row-gap:10px;
 `
-const CommentPic = Styled.div`
-grid-column:1/2;
+const CommentPicAndDesc = Styled.div`
+grid-column:1/3;
 grid-row:1/2;
+padding-left:30px;
+font-size:${iconFontSize};
 `
 
-const CommentDesc = Styled.div`
-grid-column:2/3;
-grid-row:1/2;
+const TextSpan = Styled.span`
+margin-left:20px;
 `
 
 const CommentTextArea = Styled.textarea`
 grid-column:1/3;
 grid-row:2/3;
+padding:0px 20px;
+margin:0px 20px;
 resize:none;
 `
 
 
 
 
-export default (props) => (
+const CommentArea = (props) => (
 
   <OutterDiv> 
-    <CommentPic>備註圖</CommentPic>
-    <CommentDesc>Comment</CommentDesc>
+    <CommentPicAndDesc><i className="far fa-comment-dots"></i><TextSpan>Comment</TextSpan></CommentPicAndDesc>
     <CommentTextArea placeholder="Type your memo here…" /> 
   </OutterDiv>
     
 
 )
+
+
+export default CommentArea

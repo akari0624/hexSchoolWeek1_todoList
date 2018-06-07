@@ -8,11 +8,12 @@ const outterHeight = 76
 const NavHeader = Styled.nav `
 display:flex;
 flex-direction:row;
-justify-content:center;
+justify-content:space-between;
 align-items:stretch;
 width:100%;
 height:${outterHeight}px;
 background-color:#4A90E2;
+padding:0px 15%;
 `;
 
 const DIVBlock = Styled.div`
@@ -25,19 +26,20 @@ text-align:center;
 &:hover{
     color:#FFFFFF;
     cursor:pointer;
+    border-bottom:5px solid #00408b;
 }
 `;
 
 export default class UpperBar extends Component {
 
-    render() {
+  render() {
 
-        return (<NavHeader>
-
-            <DIVBlock>My Task</DIVBlock>
-            <DIVBlock>In Progress</DIVBlock>
-            <DIVBlock>Completed</DIVBlock>
-        </NavHeader>)
+    return (
+      <NavHeader>
+        <DIVBlock>My Task</DIVBlock>
+        <DIVBlock>In Progress</DIVBlock>
+        <DIVBlock>Completed</DIVBlock>
+      </NavHeader>)
     }
 
 }
