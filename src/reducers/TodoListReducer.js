@@ -2,7 +2,9 @@ import {
   GET_CURR_TODO_DATA, REORDER_TODOS,
   HIGHLIGHT_TODO,
   MARK_ONE_TODO_IS_COMPLETE,
-  TOGGLE_APP_EDITING_TODO_MODE} from '../action_types'
+  ADD_TODO,
+  UPDATE_TODO,
+} from '../action_types'
 import { reorder } from '../utils'
 
 // const todo= {
@@ -52,6 +54,17 @@ const processCompleteTodo = (index, currTodosArr) => {
   }
   return reorder(newTodos, index, 0)  
 
+}
+
+const processUpdateTodo = (newTodo, state, index) => {
+
+  const newTodos = [...state];
+
+  newTodos[index] = newTodo
+
+  return newTodos
+  
+  
 }
 
 
@@ -112,8 +125,11 @@ export default (state = [...mockData], action) => {
   case MARK_ONE_TODO_IS_COMPLETE:
     return processCompleteTodo(action.payload, state)
 
+  case ADD_TODO:
+    return  [...state, action.payload]
 
-
+  case UPDATE_TODO:
+    return processUpdateTodo(action.payload.todoData ,state, action.payload.todoIndex)
   }
 
   

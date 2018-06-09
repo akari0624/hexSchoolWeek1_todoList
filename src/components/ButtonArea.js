@@ -1,6 +1,6 @@
 import React from 'react'
 import Styled from 'styled-components'
-
+import PropTypes from 'prop-types'
 
 const OutterDiv = Styled.div`
 grid-column:1/7;
@@ -50,11 +50,17 @@ transition:.6s;
  const ButtonArea = (props) => (
 
   <OutterDiv>
-    <CancelBtn onClick={props.toggleAppModeCB}>X Cancel</CancelBtn>
-    <ConfirmBtn>＋ Add Task</ConfirmBtn>
+    <CancelBtn onClick={props.toggleAppModeCB}>Cancel</CancelBtn>
+    <ConfirmBtn onClick={props.onConfirm}>Confirm</ConfirmBtn>
   </OutterDiv>
 
 )
+
+ButtonArea.propTypes = {
+  toggleAppModeCB:PropTypes.func.isRequired,
+  onConfirm:PropTypes.func.isRequired,
+  
+}
 
 
 export default ButtonArea

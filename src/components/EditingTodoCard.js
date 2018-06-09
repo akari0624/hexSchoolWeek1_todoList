@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
 import Styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import EditToDoBar from './EditToDoBar'
 import CalendarArea from './CalendarArea'
 import AttachFileArea from './AttachFileArea'
 import CommentArea from './CommentArea'
 import ButtonArea from './ButtonArea'
+import {updateTodo, addTodo} from '../actions'
 
 const CardWrapper = Styled.section`
 display:grid;
@@ -32,15 +35,15 @@ const handleIsInEditing = (inEdit,todo, handler) => (
 
 )
 
-const handleIsAdd_or_Edit_ButtonArea = (props) => {
+const handleIsAdd_or_Edit_ButtonArea = (props, onButtonConfirmClickHandler) => {
 
   if(props.appMode.inAdd){
-    return <ButtonArea toggleAppModeCB={props.toggleAppInNewAddTodoMode} />
+    return <ButtonArea toggleAppModeCB={props.toggleAppInNewAddTodoMode} onConfirm={onButtonConfirmClickHandler} />
   }
 
-  return <ButtonArea toggleAppModeCB={props.toggleAppInEditingTodoMode} />
+  return <ButtonArea toggleAppModeCB={props.toggleAppInEditingTodoMode} onConfirm={onButtonConfirmClickHandler} />
 
- } 
+} 
 
 
 
@@ -75,6 +78,14 @@ const generateEmptyTodo_forState = () => {
 
   return emptyTodo
 
+}
+
+const examineData = (desc) => {
+
+  if(desc === ''){
+    return false
+  }
+  return true
 }
 
 class EditingTodoCard extends Component{
@@ -115,7 +126,23 @@ class EditingTodoCard extends Component{
 
   }
 
-  
+  onButtonConfirmClick = () => {
+
+    if(!examineData()){
+      return
+    }
+
+    if(this.props.appMode.inAdd){
+      this.props.addTodo(this.state)
+      this.props.toggleAppInNewAddTodoMode()
+    
+    }else{
+      this.props.updateTodo(this.props.appMode.inEditingIndex, this.state)
+      this.props.toggleAppInEditingTodoMode()
+    }
+
+
+  }
 
    
   render(){
@@ -130,7 +157,7 @@ class EditingTodoCard extends Component{
         <CalendarArea />
         <AttachFileArea />
         <CommentArea data={this.state.comment} onCommentChange={this.onCommentChange} />
-        {handleIsAdd_or_Edit_ButtonArea(props)}
+        {handleIsAdd_or_Edit_ButtonArea(props, this.onButtonConfirmClick)}
       </CardWrapper>
     )
   }
@@ -141,8 +168,18 @@ class EditingTodoCard extends Component{
 
 
 EditingTodoCard.propTypes = {
-  appMode: PropTypes.object,
-  todoList: PropTypes.array,
+  appMode: PropTypes.object.isRequired,
+  todoList: PropTypes.array.isRequired,
+  toggleAppInNewAddTodoMode: PropTypes.func,
+  toggleAppInEditingTodoMode: PropTypes.func,
+  updateTodo: PropTypes.func.isRequired,
+  addTodo: PropTypes.func.isRequired,
 }
 
-export default EditingTodoCard
+function mapDispatchToProps(dispatch){
+
+
+  return bindActionCreators({updateTodo, addTodo}, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(EditingTodoCard)
