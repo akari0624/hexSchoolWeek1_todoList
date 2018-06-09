@@ -1,6 +1,6 @@
 import React from 'react'
 import Styled from 'styled-components'
-
+import PropTypes from 'prop-types'
 
 
 const iconFontSize = '20px'
@@ -40,11 +40,17 @@ const CommentArea = (props) => (
 
   <OutterDiv> 
     <CommentPicAndDesc><i className="far fa-comment-dots"></i><TextSpan>Comment</TextSpan></CommentPicAndDesc>
-    <CommentTextArea placeholder="Type your memo here…" /> 
+    <CommentTextArea placeholder="Type your memo here…" value={props.data} onChange={props.onCommentChange} /> 
   </OutterDiv>
     
 
 )
+
+CommentArea.propTypes = {
+  data:PropTypes.string,
+  onCommentChange:PropTypes.func,
+
+}
 
 
 export default CommentArea

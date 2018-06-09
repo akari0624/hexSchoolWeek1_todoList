@@ -7,7 +7,7 @@ import UpperBar from './containers/upperBar'
 import EdittingTaskCard from './components/EditingTodoCard'
 import TodoListArea from './components/TodoListArea'
 import AddTodoBar from './components/AddTodoBar'
-import { toggleAppInNewAddTodoMode } from './actions'
+import { toggleAppInNewAddTodoMode, toggleAppInEditingTodoMode } from './actions'
 
 
 const IndexRoute = (props) => {
@@ -15,7 +15,7 @@ const IndexRoute = (props) => {
 
   const handleIsOpenEditingTaskCard = (props) => {
 
-    if(props.appMode.inAdd){
+    if(props.appMode.inAdd || props.appMode.inEdit){
 
       return <EdittingTaskCard {...props} />
     }
@@ -39,17 +39,20 @@ const IndexRoute = (props) => {
 IndexRoute.propTypes = {
 
   toggleAppInNewAddTodoMode: PropTypes.func,
+  toggleAppInEditingTodoMode: PropTypes.func,
   appMode: PropTypes.object,
+  todoList: PropTypes.array,
 }
 
-function mapStateToProps(state){
+function mapStateToProps({appMode, todoList}){
 
-  return { appMode: state.appMode}
+  return { appMode, todoList}
 }
 
 function mapDispatchToProps(dispatch){
 
-  return bindActionCreators({toggleAppInNewAddTodoMode},dispatch)
+  return bindActionCreators({toggleAppInNewAddTodoMode,
+    toggleAppInEditingTodoMode},dispatch)
 }
 
 export default  connect(mapStateToProps, mapDispatchToProps)(IndexRoute)

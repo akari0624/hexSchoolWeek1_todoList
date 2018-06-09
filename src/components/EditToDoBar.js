@@ -1,6 +1,6 @@
 import React from 'react'
 import Styled from 'styled-components'
-
+import PropTypes from 'prop-types'
 
 const iconFontSize = '20px'
 
@@ -40,14 +40,48 @@ font-size:${iconFontSize};
 `
 
 
-const EditingTodoBar =  (props) => (
-  <OutterDiv>
-    <Checkbox type="checkbox" />
-    <Input type="text" placeholder="Type Something Here…" />
-    <Div><i className="far fa-star"></i></Div>
-    <Div><i className="far fa-edit"></i></Div>
-  </OutterDiv>
-)
+const EditingTodoBar =  (props) => {
 
+const handleIsInEdit = ({inEdit}) => {
+
+  if(inEdit === true){
+    return <i className="fas fa-edit"></i>
+  }else if(props.inEdit === false){
+    return <i className="far fa-edit"></i>
+  }
+
+}
+
+
+const handleIsHighlight = ({highlighted}) => {
+
+  if(highlighted === true){
+    return <i className="fas fa-star"></i>
+  }else{
+    return <i className="far fa-star"></i>
+  }
+
+}
+
+  return (
+    <OutterDiv>
+      <Checkbox type="checkbox" />
+      <Input 
+        type="text" 
+        placeholder="Type Something Here…" 
+        value={props.desc} 
+        onChange={props.onDescChange}
+      />
+      <Div>{handleIsHighlight(props)}</Div>
+      <Div>{handleIsInEdit(props)}</Div>
+    </OutterDiv>
+  )
+}
+
+EditingTodoBar.propTypes = {
+  inEdit:PropTypes.bool,
+  desc:PropTypes.string,
+  onDescChange:PropTypes.func,
+}
 
 export default EditingTodoBar

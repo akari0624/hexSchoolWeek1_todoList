@@ -2,7 +2,8 @@ import {
   REORDER_TODOS,
   HIGHLIGHT_TODO, 
   MARK_ONE_TODO_IS_COMPLETE,
-  TOGGLE_APP_NEW_ADD_TODO_MODE
+  TOGGLE_APP_NEW_ADD_TODO_MODE,
+  TOGGLE_APP_EDITING_TODO_MODE,
 } from '../action_types'
 
 export const sendReorderTodosToReducer  = (todosArr) => {
@@ -43,6 +44,16 @@ export const toggleAppInNewAddTodoMode  = () => {
   return {
     type: TOGGLE_APP_NEW_ADD_TODO_MODE,
     payload: undefined
+  }
+
+}
+
+export const toggleAppInEditingTodoMode  = (todoIndex, todoData) => {
+
+
+  return {
+    type: TOGGLE_APP_EDITING_TODO_MODE,
+    payload: {todoIndex, todoData}
   }
 
 }

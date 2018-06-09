@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Styled from 'styled-components'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { highlightOneTodo, markOneTodoComplete } from '../actions'
+import { highlightOneTodo, markOneTodoComplete, toggleAppInEditingTodoMode } from '../actions'
 
 const iconFontSize = '20px'
 
@@ -105,11 +105,26 @@ return (<i className="far fa-circle"></i>)
 
    if(props.isComplete){
 
-    return <TodoTextDisplayDiv><LineThroughSpan>your todo {props.num}</LineThroughSpan></TodoTextDisplayDiv>
+    return <TodoTextDisplayDiv><LineThroughSpan>{props.desc}</LineThroughSpan></TodoTextDisplayDiv>
 
    }
 
-   return <TodoTextDisplayDiv>your todo {props.num}</TodoTextDisplayDiv>
+   return <TodoTextDisplayDiv>{props.desc}</TodoTextDisplayDiv>
+  }
+
+  const handleIsShouldOpenTodoEditCard = () => {
+
+    if(props.appMode.inAdd){
+      return
+    }else if(!props.appMode.inEdit){
+      
+      const {desc, file, deadline, highlighted, comment, isComplete} = props
+      const todoData = {
+        desc, file, deadline, highlighted, comment, isComplete
+      }
+      props.toggleAppInEditingTodoMode(props.index, todoData)
+
+    }
   }
 
 
@@ -119,7 +134,7 @@ return(
       <Checkbox onClick={markOneTodoComplete} >{renderIsTodoCompleteCheckbox()}</Checkbox>
       {renderIsComplete()}
       <Div onClick={handleHighLightedChange}>{renderIsHighlightStar()}</Div>
-      <Div><i className="far fa-edit"></i></Div> 
+      <Div onClick={handleIsShouldOpenTodoEditCard}><i className="far fa-edit"></i></Div> 
     </ToDoItem> 
 
     <ToDoItemMetaCondition>
@@ -130,21 +145,38 @@ return(
 }
 
 Todo_Items.propTypes = {
-  highlighted: PropTypes.bool,
-  num: PropTypes.number,
-  highlightOneTodo: PropTypes.func,
-  index: PropTypes.number,
+ 
   markOneTodoComplete: PropTypes.func,
+  highlightOneTodo: PropTypes.func,
+  toggleAppInEditingTodoMode: PropTypes.func,
+
+  index: PropTypes.number,
+  appMode: PropTypes.object,
+  
+
+  desc: PropTypes.string,
+  file:PropTypes.string,
+  deadline:PropTypes.string,
+  highlighted: PropTypes.bool,
+  comment:PropTypes.string,
+  isComplete: PropTypes.bool,
 
 }
 
+
+function mapStateToProps(state){
+
+  return {
+    appMode:state.appMode
+  }
+}
 
 function mapDispatchToProps(dispatch){
 
   return bindActionCreators({
-    highlightOneTodo, markOneTodoComplete,
+    highlightOneTodo, markOneTodoComplete,toggleAppInEditingTodoMode
   },dispatch)
 
 }
 
-export default connect(null, mapDispatchToProps)(Todo_Items)
+export default connect(mapStateToProps, mapDispatchToProps)(Todo_Items)
