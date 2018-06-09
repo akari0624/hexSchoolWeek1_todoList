@@ -5,6 +5,12 @@ import {createStore, applyMiddleware} from 'redux'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import reducers from './reducers'
 
+// import '../style/fontawesome/css/fontawesome.min.css'
+// import '../style/fontawesome/css/fa-regular.min.css'
+// import '../style/fontawesome/css/fa-solid.min.css'
+// import '../style/style.css'
+
+
 import indexRouter from './indexRouter'
 
 const createStoreWithMiddleware = applyMiddleware()(createStore)

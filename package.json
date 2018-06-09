@@ -1,16 +1,16 @@
 {
-  "name": "react_boilerplate_simple_starter",
+  "name": "hexSchoolWeek1TodoList",
   "version": "1.0.0",
-  "description": "react+redux boilerplate simple starter",
+  "description": "hexSchoolWeek1_todoList",
   "main": "index.js",
-  "repository": "",
+  "repository": "https://github.com/akari0624/hexSchoolWeek1_todoList",
   "scripts": {
-    "start": "webpack-dev-server --public-host --config ./webpack.config.js --mode development ",
-    "clean": "rimraf dist/*",
-    "dist": "npm run clean && webpack --progress --bail --env dist -p",
+    "start": "webpack-dev-server --public-host --config ./webpack.config.js --env.NODE_ENV=dev --mode development ",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
-    "deploy": "npm run dist && gh-pages -d dist"
+    "clean": "rimraf dist/*",
+    "build": "npm run clean && webpack --progress --bail --env.NODE_ENV=dist  -p",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "author": "",
   "license": "ISC",
@@ -28,7 +28,9 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "file-loader": "^1.1.11",
     "gh-pages": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
     "install": "^0.10.1",
     "jquery": "^3.3.1",
     "jsdom": "^8.1.0",
@@ -39,6 +41,7 @@
     "prettierrc": "0.0.0-5",
     "rimraf": "^2.6.2",
     "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.15",
     "webpack-dev-server": "^3.1.3"
