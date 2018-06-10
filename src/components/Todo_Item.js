@@ -41,6 +41,9 @@ cursor:pointer;
 const TodoTextDisplayDiv = Styled.div`
 grid-column: 2/3;
 grid-row: 1/2;
+ @media  (max-width:700px){
+   padding-left:20px;
+ }
 
 `
 

@@ -12,6 +12,11 @@ import AppTabMode from '../conf'
 const OutterWrapper = Styled.section`
 margin:30px 15% 0px 15%;
 width:70%;
+
+@media (max-width: 700px){
+  margin:30px 0% 0px 0%;
+  width:100%;
+}
 `
 
 

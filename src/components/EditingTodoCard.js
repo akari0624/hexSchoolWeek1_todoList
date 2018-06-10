@@ -21,6 +21,11 @@ margin:30px 15% 0px 15%;
 width:70%;
 box-shadow: 0 4px 4px 0 #C8C8C8;
 border-radius: 5px;
+
+@media (max-width:700px){
+  margin:30px 0% 0px 0%;
+  width:100%;
+}
 `
 
 

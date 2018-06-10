@@ -18,6 +18,11 @@ width:100%;
 height:${outterHeight}px;
 background-color:#4A90E2;
 padding:0px 15%;
+
+@media (max-width:700px){
+  padding:0;
+}
+
 `;
 
 const DIVBlock = Styled.div`
@@ -32,6 +37,8 @@ text-align:center;
     cursor:pointer;
     border-bottom:5px solid #00408b;
 }
+
+
 `;
 
 
