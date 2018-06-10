@@ -20,7 +20,7 @@ module.exports = env => {
         entry: ['./src/index.js'],
         output: {
             path: buildedPutPath,
-            publicPath: '/style/',
+            publicPath: '/',
             filename: 'bundle.js'
         },
 
