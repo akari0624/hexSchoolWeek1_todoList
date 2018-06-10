@@ -23,23 +23,59 @@ font-family: Roboto-Medium;
 font-size: 24px;
 text-align:center;
 
-&:hover{
-    color:#FFFFFF;
+&:hover{ 
+    color:#FFFFFF; 
     cursor:pointer;
     border-bottom:5px solid #00408b;
 }
 `;
 
+
+const CurrentSelectedBlock = Styled.div`
+line-height:${outterHeight}px;
+font-family: Roboto-Medium;
+font-size: 24px;
+text-align:center;
+color:#FFFFFF; 
+cursor:pointer;
+border-bottom:5px solid #00408b;
+`
+
+const Pages = ['My Task', 'In Progress', 'Completed']
+
 export default class UpperBar extends Component {
+
+  constructor(props){
+    super(props)
+
+    this.state = {
+      nowPage :Pages[0]
+    }
+  }
+
+  onOneTabClick = (e) => (
+
+    this.setState({
+      nowPage:e.target.textContent
+    })
+  )
+
+  renderCurrentFocusTabBar = (clickHandler) => (
+
+    Pages.map(pText => (
+
+      pText === this.state.nowPage 
+        ? <CurrentSelectedBlock key={pText} onClick={clickHandler}> {pText} </CurrentSelectedBlock>
+        :<DIVBlock key={pText} onClick={clickHandler}>{pText}</DIVBlock>
+    ))
+  )
 
   render() {
 
     return (
       <NavHeader>
-        <DIVBlock>My Task</DIVBlock>
-        <DIVBlock>In Progress</DIVBlock>
-        <DIVBlock>Completed</DIVBlock>
+        {this.renderCurrentFocusTabBar(this.onOneTabClick)}
       </NavHeader>)
-    }
+  }
 
 }
