@@ -7,7 +7,7 @@ import {bindActionCreators} from 'redux'
 import TodoItem from './Todo_Item'
 import { sendReorderTodosToReducer } from '../actions'
 import { reorder } from '../utils'
-
+import AppTabMode from '../conf'
 
 const OutterWrapper = Styled.section`
 margin:30px 15% 0px 15%;
@@ -22,7 +22,20 @@ const getListStyle = isDraggingOver => ({
 
 
 
+const filterTodoListByCurrTabMode = (allTodos, tabMode) => {
 
+     if(tabMode === AppTabMode[0]){
+        return allTodos
+     }else if(
+      tabMode === AppTabMode[1]
+     ){
+      return allTodos.filter(d => !d.isComplete)
+     }else if(tabMode === AppTabMode[2]){
+      return allTodos.filter(d => d.isComplete)
+     }
+
+     throw new Error(`unknown tab mode type!!! => ${tabMode}`)
+    }
 
 class TodoListArea extends Component {
 
@@ -88,11 +101,12 @@ renderDragableTodoItem = (todoData, i) => (
 
     render() {
 
+      const filteredTabmodeTodos = filterTodoListByCurrTabMode(this.props.todoList, this.props.appMode.visibilityTodoMode)
       return (
         <div> 
           <DragDropContext onDragEnd={this.onDragAndDropEnd}>
             <Droppable droppableId="todoListDropable">
-              {this.renderDnDableTodoListArea(this.props.todoList)}
+              {this.renderDnDableTodoListArea(filteredTabmodeTodos)}
             </Droppable>
           </DragDropContext>  
         </div>
@@ -103,13 +117,12 @@ renderDragableTodoItem = (todoData, i) => (
 TodoListArea.propTypes = {
   todoList: PropTypes.array,
   sendReorderTodosToReducer: PropTypes.func,
+  appMode: PropTypes.object,
 
 }
 
-function mapStateToProps(state) {
-  const {todoList} = state
-  return {todoList}
-
+function mapStateToProps({todoList, appMode}) {
+  return {todoList, appMode}
 }
 
 function mapDispatchToProps(dispatch){

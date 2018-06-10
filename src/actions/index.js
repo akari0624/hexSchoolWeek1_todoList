@@ -6,6 +6,7 @@ import {
   TOGGLE_APP_EDITING_TODO_MODE,
   UPDATE_TODO,
   ADD_TODO,
+  CHANGE_APP_CURR_TAB_MODE,
 } from '../action_types'
 
 export const sendReorderTodosToReducer  = (todosArr) => {
@@ -78,6 +79,15 @@ export const addTodo  = (todoData) => {
   return {
     type: ADD_TODO,
     payload: todoData
+  }
+
+}
+
+export const changeAppCurrTabMode = (mode) => {
+
+  return {
+    type:CHANGE_APP_CURR_TAB_MODE,
+    payload:mode
   }
 
 }

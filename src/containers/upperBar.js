@@ -1,8 +1,12 @@
-import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {conect} from 'react-redux';
+import React, {Component} from 'react'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import {PropTypes} from 'prop-types'
 
-import Styled from 'styled-components';
+import Styled from 'styled-components'
+import Pages from '../conf'
+
+import {changeAppCurrTabMode} from '../actions'
 
 const outterHeight = 76
 const NavHeader = Styled.nav `
@@ -41,9 +45,8 @@ cursor:pointer;
 border-bottom:5px solid #00408b;
 `
 
-const Pages = ['My Task', 'In Progress', 'Completed']
 
-export default class UpperBar extends Component {
+class UpperBar extends Component {
 
   constructor(props){
     super(props)
@@ -53,12 +56,15 @@ export default class UpperBar extends Component {
     }
   }
 
-  onOneTabClick = (e) => (
+  onOneTabClick = (e) => {
 
+    const changeToTabMode = e.target.textContent
     this.setState({
-      nowPage:e.target.textContent
+      nowPage:changeToTabMode
     })
-  )
+
+    this.props.changeAppCurrTabMode(changeToTabMode)
+  }
 
   renderCurrentFocusTabBar = (clickHandler) => (
 
@@ -79,3 +85,19 @@ export default class UpperBar extends Component {
   }
 
 }
+
+
+
+UpperBar.propTypes = {
+
+  changeAppCurrTabMode:PropTypes.func,
+}
+
+function mapDispatchToProps(dispatch){
+
+  return bindActionCreators({changeAppCurrTabMode},dispatch)
+
+}
+
+export default connect(null, mapDispatchToProps)(UpperBar)
+

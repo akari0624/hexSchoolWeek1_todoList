@@ -74,35 +74,35 @@ const mockData = [{
   deadline:'',
   highlighted:false,
   comment:'',
-  isCompletefalse:false,
+  isComplete:false,
 },{
   desc:'myTodo 2',
   file:'',
   deadline:'',
   highlighted:false,
   comment:'',
-  isCompletefalse:false,
+  isComplete:false,
 },{
   desc:'myTodo 3',
   file:'',
   deadline:'',
   highlighted:false,
   comment:'',
-  isCompletefalse:false,
+  isComplete:false,
 },{
   desc:'myTodo 4',
   file:'',
   deadline:'',
   highlighted:false,
   comment:'',
-  isCompletefalse:false,
+  isComplete:false,
 },{
   desc:'myTodo 5',
   file:'',
   deadline:'',
   highlighted:false,
   comment:'',
-  isCompletefalse:false,
+  isComplete:false,
 },]
 
 
