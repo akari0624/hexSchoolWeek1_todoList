@@ -22,6 +22,7 @@ width:70%;
 box-shadow: 0 4px 4px 0 #C8C8C8;
 border-radius: 5px;
 
+
 @media (max-width:700px){
   margin:30px 0% 0px 0%;
   width:100%;
@@ -100,34 +101,36 @@ class EditingTodoCard extends Component{
 
     if(this.props.appMode.inEdit){
      
-      this.state = generateEditinfTodo_forState(this.props)
+      this.state = {todo:generateEditinfTodo_forState(this.props)}
 
     }else if(this.props.appMode.inAdd){
 
-      this.state = generateEmptyTodo_forState()
+      this.state = {todo:generateEmptyTodo_forState()}
     }
+
 
   }
 
   componentWillUnmount(){
     this.setState({
-      desc:null,
-      file:null,
-      deadline:null,
-      highlighted:null,
-      comment:null,
-      isCompletefalse:null,
+      todo:null
     })
   }
 
   onCommentChange = (e) => {
     const comment = e.target.value
-    this.setState({comment})
+
+    const copiedTodo = {...this.state.todo}
+    copiedTodo.comment = comment
+    this.setState({todo:copiedTodo})
   }
 
   onDescChange = (e) => {
     const desc = e.target.value
-    this.setState({desc})
+
+    const copiedTodo = {...this.state.todo}
+    copiedTodo.desc = desc
+    this.setState({todo:copiedTodo})
 
   }
 
@@ -138,11 +141,11 @@ class EditingTodoCard extends Component{
     }
 
     if(this.props.appMode.inAdd){
-      this.props.addTodo(this.state)
+      this.props.addTodo(this.state.todo)
       this.props.toggleAppInNewAddTodoMode()
     
     }else{
-      this.props.updateTodo(this.props.appMode.inEditingIndex, this.state)
+      this.props.updateTodo(this.props.appMode.inEditingIndex, this.state.todo)
       this.props.toggleAppInEditingTodoMode()
     }
 
@@ -158,10 +161,10 @@ class EditingTodoCard extends Component{
     return(
       <CardWrapper> 
   
-        {handleIsInEditing(props.appMode.inEdit, this.state, this.onDescChange)}
+        {handleIsInEditing(props.appMode.inEdit, this.state.todo, this.onDescChange)}
         <CalendarArea />
         <AttachFileArea />
-        <CommentArea data={this.state.comment} onCommentChange={this.onCommentChange} />
+        <CommentArea data={this.state.todo.comment} onCommentChange={this.onCommentChange} />
         {handleIsAdd_or_Edit_ButtonArea(props, this.onButtonConfirmClick)}
       </CardWrapper>
     )
