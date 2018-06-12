@@ -1,11 +1,14 @@
 import React from 'react'
 import Styled from 'styled-components'
-import { DatePicker, TimePicker } from 'antd'
+import { DatePicker} from 'antd'
 import 'antd/lib/date-picker/style'
 import 'antd/lib/time-picker/style'
 import locale from 'antd/lib/date-picker/locale/zh_TW'
 
 const iconFontSize = '20px'
+
+
+
 
 const OutterDiv = Styled.div `
 grid-column:1/7;
@@ -31,7 +34,7 @@ margin-left:20px;
 
 
 const DatePickerStyle = {
-  gridColumn: '1/2',
+  gridColumn: '1/3',
   gridRow: '2/3',
   marginLeft:'30px',
 
@@ -49,13 +52,19 @@ const onDateInputChange = (date) => console.log(date.toString())
 const onTimeInputChange = (time) => console.log(time.toString())
 
 
+const onDateAndTimeOk = (value) => {
+  console.log('onOK', value)
+}
+
 const DateAndTimePicker = (props) => (
 
 
+  
+
   <OutterDiv>
     <CalendarPicAndDesc><i className="far fa-calendar-alt"></i>  <TextSpan>dead line</TextSpan></CalendarPicAndDesc>
-    <DatePicker onChange={onDateInputChange} locale={locale} style={DatePickerStyle} /> 
-    <TimePicker onChange={onTimeInputChange} style={TimePickerStyle} />
+    <DatePicker showTime format="YYYY-MM-DD HH:mm" onChange={onDateInputChange} locale={locale} style={DatePickerStyle} onOk={onDateAndTimeOk} /> 
+
   </OutterDiv>
 
 )

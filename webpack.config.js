@@ -72,7 +72,13 @@ module.exports = env => {
 
         ],
         resolve: {
-            extensions: ['*', '.js', '.jsx']
+            extensions: ['*', '.js', '.jsx'],
+            alias: { 
+              'react': path.resolve(__dirname, 'node_modules', 'react'),
+              'react-dom': path.resolve(__dirname, 'node_modules', 'react-dom'),
+              'styled-components': path.resolve(__dirname, 'node_modules', 'styled-components'),
+        }
+             
         },
         devServer: {
             historyApiFallback: true,

@@ -62,7 +62,10 @@ padding-bottom:16px;
 const LineThroughSpan = Styled.span`
 text-decoration:line-through;
 `
-
+const CustomALink = Styled.a`
+color:rgba(0,0,0,.65)
+text-decoration: none;
+`
 
 
 
@@ -136,8 +139,8 @@ return(
     <ToDoItem>   
       <Checkbox onClick={markOneTodoComplete} >{renderIsTodoCompleteCheckbox()}</Checkbox>
       {renderIsComplete()}
-      <Div onClick={handleHighLightedChange}>{renderIsHighlightStar()}</Div>
-      <Div onClick={handleIsShouldOpenTodoEditCard}><i className="far fa-edit"></i></Div> 
+      <Div><CustomALink onClick={handleHighLightedChange} href="#">{renderIsHighlightStar()}</CustomALink></Div>
+      <Div><CustomALink onClick={handleIsShouldOpenTodoEditCard} href="#"><i className="far fa-edit"></i></CustomALink></Div> 
     </ToDoItem> 
 
     <ToDoItemMetaCondition>
