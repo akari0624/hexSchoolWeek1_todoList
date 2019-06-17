@@ -1,19 +1,4 @@
-export const GET_CURR_TODO_DATA = 'GET_CURR_TODO_DATA'
+import SAGA from './sagas'
+import STORE from './stores'
 
-export const REORDER_TODOS = 'REORDER_TODOS'
-
-export const HIGHLIGHT_TODO = 'HIGHLIGHT_TODO'
-
-
-export const MARK_ONE_TODO_IS_COMPLETE = 'MARK_ONE_TODO_IS_COMPLETE'
-
-
-export const TOGGLE_APP_NEW_ADD_TODO_MODE = 'TOGGLE_APP_NEW_ADD_TODO_MODE'
-
-export const TOGGLE_APP_EDITING_TODO_MODE = 'TOGGLE_APP_EDITING_TODO_MODE'
-
-export const UPDATE_TODO = 'UPDATE_TODO'
-
-export const ADD_TODO = 'ADD_TODO'
-
-export const CHANGE_APP_CURR_TAB_MODE =  'CHANGE_APP_CURR_TAB_MODE'
+export {SAGA, STORE}
