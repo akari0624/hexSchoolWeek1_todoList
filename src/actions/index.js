@@ -1,19 +1,15 @@
+import { createAction } from 'redux-actions'
 import {
-  REORDER_TODOS,
-  HIGHLIGHT_TODO, 
-  MARK_ONE_TODO_IS_COMPLETE,
-  TOGGLE_APP_NEW_ADD_TODO_MODE,
-  TOGGLE_APP_EDITING_TODO_MODE,
-  UPDATE_TODO,
-  ADD_TODO,
-  CHANGE_APP_CURR_TAB_MODE,
+  SAGA, STORE
 } from '../action_types'
+
+
 
 export const sendReorderTodosToReducer  = (todosArr) => {
 
 
   return {
-      type: REORDER_TODOS,
+      type: STORE.REORDER_TODOS,
       payload: todosArr
   }
 
@@ -23,7 +19,7 @@ export const highlightOneTodo  = (todoIndex) => {
 
 
   return {
-      type: HIGHLIGHT_TODO,
+      type: STORE.HIGHLIGHT_TODO,
       payload: todoIndex
   }
 
@@ -33,7 +29,7 @@ export const markOneTodoComplete  = (todoIndex) => {
 
 
   return {
-      type: MARK_ONE_TODO_IS_COMPLETE,
+      type: STORE.MARK_ONE_TODO_IS_COMPLETE,
       payload: todoIndex
   }
 
@@ -45,7 +41,7 @@ export const toggleAppInNewAddTodoMode  = () => {
 
 
   return {
-    type: TOGGLE_APP_NEW_ADD_TODO_MODE,
+    type: STORE.TOGGLE_APP_NEW_ADD_TODO_MODE,
     payload: undefined
   }
 
@@ -55,7 +51,7 @@ export const toggleAppInEditingTodoMode  = (todoIndex, todoData) => {
 
 
   return {
-    type: TOGGLE_APP_EDITING_TODO_MODE,
+    type: STORE.TOGGLE_APP_EDITING_TODO_MODE,
     payload: {todoIndex, todoData}
   }
 
@@ -66,7 +62,7 @@ export const updateTodo  = (todoIndex, todoData) => {
 
 
   return {
-    type: UPDATE_TODO,
+    type: STORE.UPDATE_TODO,
     payload: {todoIndex, todoData}
   }
 
@@ -77,7 +73,7 @@ export const addTodo  = (todoData) => {
 
 
   return {
-    type: ADD_TODO,
+    type: STORE.ADD_TODO,
     payload: todoData
   }
 
@@ -86,8 +82,10 @@ export const addTodo  = (todoData) => {
 export const changeAppCurrTabMode = (mode) => {
 
   return {
-    type:CHANGE_APP_CURR_TAB_MODE,
+    type: STORE.CHANGE_APP_CURR_TAB_MODE,
     payload:mode
   }
 
 }
+
+export const getInitTodos = createAction(SAGA.SAGA_GET_INIT_TODO_DATA, payload => payload)
