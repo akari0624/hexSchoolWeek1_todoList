@@ -1,9 +1,5 @@
 import {
-  GET_CURR_TODO_DATA, REORDER_TODOS,
-  HIGHLIGHT_TODO,
-  MARK_ONE_TODO_IS_COMPLETE,
-  ADD_TODO,
-  UPDATE_TODO,
+  STORE
 } from '../action_types'
 import { reorder } from '../utils'
 
@@ -16,6 +12,7 @@ import { reorder } from '../utils'
 //     comment:String,
 //     isComplete: boolean,
 // }
+
 
 
 const processHighlighTodo = (index, currTodosArr) => {
@@ -68,67 +65,31 @@ const processUpdateTodo = (newTodo, state, index) => {
 }
 
 
-const mockData = [{
-  desc:'myTodo 1',
-  file:'',
-  deadline:'',
-  highlighted:false,
-  comment:'',
-  isComplete:false,
-},{
-  desc:'myTodo 2',
-  file:'',
-  deadline:'',
-  highlighted:false,
-  comment:'',
-  isComplete:false,
-},{
-  desc:'myTodo 3',
-  file:'',
-  deadline:'',
-  highlighted:false,
-  comment:'',
-  isComplete:false,
-},{
-  desc:'myTodo 4',
-  file:'',
-  deadline:'',
-  highlighted:false,
-  comment:'',
-  isComplete:false,
-},{
-  desc:'myTodo 5',
-  file:'',
-  deadline:'',
-  highlighted:false,
-  comment:'',
-  isComplete:false,
-},]
 
 
-export default (state = [...mockData], action) => {
+export default (state = [], action) => {
 
   switch(action.type){
 
-  case GET_CURR_TODO_DATA:
+  case STORE.GET_INIT_TODO_DATA:
+   
+    return [...action.payload]
 
-    return state
-
-  case REORDER_TODOS:
+  case STORE.REORDER_TODOS:
     state = action.payload  
 
     return state
 
-  case HIGHLIGHT_TODO:
+  case STORE.HIGHLIGHT_TODO:
     return processHighlighTodo(action.payload, state)
 
-  case MARK_ONE_TODO_IS_COMPLETE:
+  case STORE.MARK_ONE_TODO_IS_COMPLETE:
     return processCompleteTodo(action.payload, state)
 
-  case ADD_TODO:
+  case STORE.ADD_TODO:
     return  [...state, action.payload]
 
-  case UPDATE_TODO:
+  case STORE.UPDATE_TODO:
     return processUpdateTodo(action.payload.todoData ,state, action.payload.todoIndex)
   }
 
