@@ -40,6 +40,9 @@
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
     },
     "globals": {
-     "__dirname":false
+     "__dirname":false,
+     "describe": false,
+     "it": false
     }
 }
+ 

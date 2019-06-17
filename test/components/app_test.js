@@ -1,11 +1,11 @@
 import { renderComponent , expect } from '../test_helper'
-import App from '../../src/components/app'
+import TodoListArea from '../../src/components/TodoListArea'
 
-describe('App' , () => {
+describe('TodoListArea' , () => {
   let component
 
   beforeEach(() => {
-    component = renderComponent(App)
+    component = renderComponent(TodoListArea)
   })
 
   it('renders something', () => {
