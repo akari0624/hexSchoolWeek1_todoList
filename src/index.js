@@ -8,7 +8,7 @@ import appStore from './store'
 // import '../style/fontawesome/css/fa-solid.min.css'
 // import '../style/style.css'
 
-import indexRouter from './indexRouter';
+import indexRouter from './pages/indexRouter';
 
 ReactDOM.render(
   <Provider store={appStore}>

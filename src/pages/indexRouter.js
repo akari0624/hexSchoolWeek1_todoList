@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 
-import UpperBar from './containers/upperBar'
-import EdittingTaskCard from './components/EditingTodoCard'
-import TodoListArea from './components/TodoListArea'
-import AddTodoBar from './components/AddTodoBar'
-import { toggleAppInNewAddTodoMode, toggleAppInEditingTodoMode } from './actions'
+import UpperBar from '../containers/upperBar'
+import EdittingTaskCard from '../components/EditingTodoCard'
+import TodoListArea from '../components/TodoListArea'
+import AddTodoBar from '../components/AddTodoBar'
+import { toggleAppInNewAddTodoMode, toggleAppInEditingTodoMode, getInitTodos } from '../actions'
 
 
 const IndexRoute = (props) => {
 
+  useEffect(() => {
+    props.getInitTodos()
+  }, [])
 
   const handleIsOpenEditingTaskCard = (props) => {
 
@@ -40,6 +43,7 @@ IndexRoute.propTypes = {
 
   toggleAppInNewAddTodoMode: PropTypes.func,
   toggleAppInEditingTodoMode: PropTypes.func,
+  getInitTodos: PropTypes.func,
   appMode: PropTypes.object,
   todoList: PropTypes.array,
 }
@@ -51,8 +55,12 @@ function mapStateToProps({appMode, todoList}){
 
 function mapDispatchToProps(dispatch){
 
-  return bindActionCreators({toggleAppInNewAddTodoMode,
-    toggleAppInEditingTodoMode},dispatch)
+  return bindActionCreators(
+    {
+      toggleAppInNewAddTodoMode,
+      toggleAppInEditingTodoMode,
+      getInitTodos
+    }, dispatch)
 }
 
 export default  connect(mapStateToProps, mapDispatchToProps)(IndexRoute)
