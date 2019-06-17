@@ -1,12 +1,10 @@
 
 import {createStore, applyMiddleware} from 'redux'
-import createSagaMiddleware, {all} from 'redux-saga'
+import createSagaMiddleware from 'redux-saga'
 import reducers from '../reducers'
 
+import logicRootSagaArray from '../sagas'
 
-function* rootSaga(){
-  yield all([])
-}
 
 
 const sagaMiddleware = createSagaMiddleware()
@@ -17,7 +15,7 @@ const appStore = createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXT
 
 
 
-sagaMiddleware.run(rootSaga)
+logicRootSagaArray.forEach(rootSaga => sagaMiddleware.run(rootSaga))
 
 
 
