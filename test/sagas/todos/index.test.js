@@ -1,5 +1,4 @@
 import { take, call, put } from 'redux-saga/effects';
-import { expect } from 'chai'
 import { getInitTodos, getMockDataAsyncly } from '../../../src/sagas/todos';
 import { SAGA, STORE } from '../../../src/action_types';
 
