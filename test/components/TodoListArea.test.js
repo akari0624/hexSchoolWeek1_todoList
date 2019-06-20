@@ -24,6 +24,7 @@ describe('can render todos', () => {
       todoList: mockedTodos, 
       appMode: getMockedAppMode(),
     }
-    renderReduxConnectedHOC(TodoListArea, optionsForStore)
+    const { container } = renderReduxConnectedHOC(TodoListArea, optionsForStore)
+    expect(container.querySelectorAll('._todoItems').length).toEqual(3)
   })
 })

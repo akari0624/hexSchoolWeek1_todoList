@@ -136,7 +136,7 @@ return (<i className="far fa-circle"></i>)
 
 return(
   <OuttestWrapper highlighted={props.highlighted}>
-    <ToDoItem>   
+    <ToDoItem className="_todoItems">   
       <Checkbox onClick={markOneTodoComplete} >{renderIsTodoCompleteCheckbox()}</Checkbox>
       {renderIsComplete()}
       <Div><CustomALink onClick={handleHighLightedChange} href="#">{renderIsHighlightStar()}</CustomALink></Div>
