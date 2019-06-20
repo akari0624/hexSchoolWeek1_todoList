@@ -1,6 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
 import { expect } from 'chai'
-import { getInitTodos, getMockDataAsyncly } from '../../../src/sagas/todos';
+import { getInitTodos, getMockDataAsyncly, reorderTodos } from '../../../src/sagas/todos';
 import { SAGA, STORE } from '../../../src/action_types';
 
 describe('test get init todos generator function', () => {
@@ -27,3 +27,23 @@ describe('test get init todos generator function', () => {
   })
 
 });
+
+
+describe('test reorderTodos generator function', () => {
+  const _iterator = reorderTodos()
+  it('can take reorder action', () => {
+    const mockedTake = take(SAGA.SAGA_REORDER_TODOS);
+    const iteTake = _iterator.next().value
+
+    expect(mockedTake).to.deep.equal(iteTake)
+  })
+
+  it('can dispatch correct action(i.e. reordered array in payload)', () => {
+    const mockedReorderTodos = [ {'number': 2,}, {'number': 1,},]
+    const mockedAction = {type: STORE.REORDER_TODOS, payload: mockedReorderTodos}
+    const mockedDispatchedObj = put(mockedAction)
+
+    const iteTake = _iterator.next(mockedAction).value
+    expect(mockedDispatchedObj).to.deep.equal(iteTake)
+  })
+})

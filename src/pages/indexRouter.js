@@ -45,7 +45,7 @@ IndexRoute.propTypes = {
   toggleAppInEditingTodoMode: PropTypes.func,
   getInitTodos: PropTypes.func,
   appMode: PropTypes.object,
-  todoList: PropTypes.array,
+  todoList: PropTypes.object,
 }
 
 function mapStateToProps({appMode, todoList}){

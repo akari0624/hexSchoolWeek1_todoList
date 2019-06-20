@@ -9,7 +9,7 @@ export const sendReorderTodosToReducer  = (todosArr) => {
 
 
   return {
-      type: STORE.REORDER_TODOS,
+      type: SAGA.SAGA_REORDER_TODOS,
       payload: todosArr
   }
 

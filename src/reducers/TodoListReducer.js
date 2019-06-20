@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions'
-// import { fromJS, List} from 'immutable'
+import { fromJS, List} from 'immutable'
 import {
   STORE
 } from '../action_types'
@@ -17,7 +17,7 @@ import { reorder } from '../utils'
 
 
 
-const processHighlighTodo = (index, currTodosArr) => {
+const processHighLightedTodo = (index, currTodosArr) => {
 
   const newTodos = [...currTodosArr]
 
@@ -73,16 +73,17 @@ const {
   ADD_TODO, UPDATE_TODO
 } = STORE
 
+
 const TodoSReducerStrategy = {
-  GET_INIT_TODO_DATA: (state, {payload}) => [...payload],
-  REORDER_TODOS: (state, {payload}) => payload,
-  HIGHLIGHT_TODO: (state, {payload}) => processHighlighTodo(payload, state),
+  GET_INIT_TODO_DATA: (state, {payload}) => List.of(...payload),
+  REORDER_TODOS: (state, {payload}) =>  List.of(...payload),
+  HIGHLIGHT_TODO: (state, {payload}) => processHighLightedTodo(payload, state),
   MARK_ONE_TODO_IS_COMPLETE: (state, {payload}) => processCompleteTodo(payload, state),
   ADD_TODO: (state, {payload}) => [...state, payload],
   UPDATE_TODO: (state, {payload}) => processUpdateTodo(payload.todoData ,state, payload.todoIndex)
 }
 
-export default handleActions(TodoSReducerStrategy, [])
+export default handleActions(TodoSReducerStrategy, List())
 
 
 // export default (state = [], action) => {

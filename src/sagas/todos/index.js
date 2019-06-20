@@ -59,6 +59,8 @@ export const getMockDataAsyncly = () => (new Promise((res, rej) => {
 
 const dispatchInitTodosToStore = createAction(STORE.GET_INIT_TODO_DATA, payload => payload)
 
+const dispatchReorderTodosToStore = createAction(STORE.REORDER_TODOS, payload => payload)
+
 export function* getInitTodos() {
   while(true){
     yield take(SAGA.SAGA_GET_INIT_TODO_DATA)
@@ -68,7 +70,20 @@ export function* getInitTodos() {
 
 }
 
+export function* reorderTodos() {
+  while(true){
+    const {payload} = yield take(SAGA.SAGA_REORDER_TODOS)
+    yield put(dispatchReorderTodosToStore(payload))
+  }
+
+}
+
 
 export default function* todosRootSaga() {
-  yield all([getInitTodos()])
+  yield all(
+    [
+      getInitTodos(),
+      reorderTodos(),
+    ]
+  )
 }
