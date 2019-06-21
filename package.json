@@ -6,7 +6,7 @@
   "repository": "https://github.com/akari0624/hexSchoolWeek1_todoList",
   "scripts": {
     "start": "webpack-dev-server --public-host --config ./webpack.config.js --env.NODE_ENV=dev --mode development ",
-    "test": "jest ./test/components/TodoListArea.test.js",
+    "test": "jest",
     "test:watch": "npm run test -- --watch",
     "clean": "rimraf dist/*",
     "build": "npm run clean && webpack --progress --bail --env.NODE_ENV=dist  -p",

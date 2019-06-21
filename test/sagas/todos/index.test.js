@@ -1,5 +1,5 @@
 import { take, call, put } from 'redux-saga/effects';
-import { getInitTodos, getMockDataAsyncly } from '../../../src/sagas/todos';
+import { getInitTodos, getMockDataAsyncly, reorderTodos } from '../../../src/sagas/todos';
 import { SAGA, STORE } from '../../../src/action_types';
 
 describe('test get init todos generator function', () => {
@@ -8,13 +8,13 @@ describe('test get init todos generator function', () => {
   it(`can take ${SAGA.SAGA_GET_INIT_TODO_DATA} pattern`, () => {
     const result1 = take(SAGA.SAGA_GET_INIT_TODO_DATA);
     const iResult = _iterator.next().value;
-    expect(result1).to.deep.equal(iResult);
+    expect(result1).toEqual(iResult);
   });
  
   it(`should call fetchInitTodosAsyncly`, () => {
     const resultPromise = call(getMockDataAsyncly);
     const iResult = _iterator.next().value;
-    expect(resultPromise).to.deep.equal(iResult);
+    expect(resultPromise).toEqual(iResult);
   })
 
   const mockAPIPayload = 'mocked payload'
@@ -22,7 +22,7 @@ describe('test get init todos generator function', () => {
   it(`can put API result`, () => {
     const putResult = put({type: STORE.GET_INIT_TODO_DATA, payload: mockAPIPayload});
     const iResult = _iterator.next(mockAPIPayload).value;
-    expect(putResult).to.deep.equal(iResult);
+    expect(putResult).toEqual(iResult);
   })
 
 });
@@ -34,7 +34,7 @@ describe('test reorderTodos generator function', () => {
     const mockedTake = take(SAGA.SAGA_REORDER_TODOS);
     const iteTake = _iterator.next().value
 
-    expect(mockedTake).to.deep.equal(iteTake)
+    expect(mockedTake).toEqual(iteTake)
   })
 
   it('can dispatch correct action(i.e. reordered array in payload)', () => {
@@ -43,6 +43,6 @@ describe('test reorderTodos generator function', () => {
     const mockedDispatchedObj = put(mockedAction)
 
     const iteTake = _iterator.next(mockedAction).value
-    expect(mockedDispatchedObj).to.deep.equal(iteTake)
+    expect(mockedDispatchedObj).toEqual(iteTake)
   })
 })
