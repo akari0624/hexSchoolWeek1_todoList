@@ -120,7 +120,7 @@ renderDragableTodoItem = (todoData, i) => (
 }
 
 TodoListArea.propTypes = {
-  todoList: PropTypes.object,
+  todoList: PropTypes.array,
   sendReorderTodosToReducer: PropTypes.func,
   appMode: PropTypes.object,
 
