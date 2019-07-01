@@ -89,7 +89,7 @@ const Todo_Items = (props) => {
   const renderIsHighlightStar = () => {
 
     if(props.highlighted){
-      return (<i className="fas fa-star"></i>)
+      return (<i data-testid="highlighted" className="fas fa-star"></i>)
     }
 
     return (<i className="far fa-star"></i>)

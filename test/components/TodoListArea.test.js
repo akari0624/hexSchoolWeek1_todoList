@@ -31,3 +31,19 @@ describe('can render todos', () => {
     expect(todos[0]).toHaveTextContent(mockDesc)
   })
 })
+
+
+describe('can render highlighted todos', () => {
+  const mockDesc = 'highlighted todo'
+  const mockedTodos = [new Todo(mockDesc, '', 0, '', true), new Todo(mockDesc, '', 0, '', true), new Todo()]
+  it('can render highLighted todo', () => {
+    const optionsForStore = {
+      todoList: mockedTodos, 
+      appMode: getMockedAppMode(),
+    }
+    const  container  = renderReduxConnectedHOC(TodoListArea, optionsForStore)
+    const highLighted_i_IconArr = container.queryAllByTestId('highlighted')
+   
+    expect(highLighted_i_IconArr.length).toBe(2)
+  })
+})
