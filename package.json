@@ -10,7 +10,8 @@
     "test:watch": "npm run test -- --watch",
     "clean": "rimraf dist/*",
     "build": "npm run clean && webpack --progress --bail --env.NODE_ENV=dist  -p",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "cypress": "cypress open"
   },
   "author": "",
   "license": "ISC",
@@ -42,6 +43,7 @@
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
     "css-loader": "^0.28.10",
+    "cypress": "^3.3.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",
