@@ -71,7 +71,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.5",
     "antd": "^3.6.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "immutable": "^4.0.0-rc.12",
     "lodash.clonedeep": "^4.5.0",
     "prop-types": "^15.6.1",
